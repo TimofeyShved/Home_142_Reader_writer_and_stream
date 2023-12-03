@@ -1,11 +1,12 @@
 package com.company;
 
 import java.io.*;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        // Самый простой способ прочитать файл (но это по символьно и неудобно)
+        // Самый простой способ прочитать файл (но это по символьно и неудобно) (ノ_<。)
         System.out.println("---------------------1---------------------");
         Reader reader = new FileReader("text.txt");
         int i = 0;
@@ -24,5 +25,16 @@ public class Main {
                 }
             }
         }
+
+        // Через этот способ намного легче и проще всё сделать и читать будет по строке (*^.^*)
+        System.out.println("---------------------3---------------------");
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("text.txt"));
+        List<String> list = new ArrayList<>();
+        list.add(bufferedReader.readLine());
+        for(String s:list){
+            System.out.println(s);
+        }
+
+        System.out.println("---------------------4---------------------");
     }
 }
