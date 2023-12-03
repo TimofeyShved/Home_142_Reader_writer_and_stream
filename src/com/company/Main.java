@@ -26,6 +26,12 @@ public class Main {
             }
         }
 
+        // true необходим, а иначе затирает текст
+        Writer writer = new FileWriter("text.txt", true);
+        writer.write("str\n");
+        writer.flush();
+        writer.close();
+
         // Через этот способ намного легче и проще всё сделать и читать будет по строке (*^.^*)
         System.out.println("---------------------3---------------------");
         BufferedReader bufferedReader = new BufferedReader(new FileReader("text.txt"));
