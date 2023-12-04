@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.*;
 import java.util.*;
+import java.util.zip.ZipInputStream;
 
 public class Main {
 
@@ -25,6 +26,7 @@ public class Main {
                 }
             }
         }
+        reader.close();
 
         // true необходим, а иначе затирает текст
         Writer writer = new FileWriter("text.txt", true);
@@ -35,12 +37,30 @@ public class Main {
         // Через этот способ намного легче и проще всё сделать и читать будет по строке (*^.^*)
         System.out.println("---------------------3---------------------");
         BufferedReader bufferedReader = new BufferedReader(new FileReader("text.txt"));
-        List<String> list = new ArrayList<>();
-        list.add(bufferedReader.readLine());
-        for(String s:list){
+        String s;
+        while((s = bufferedReader.readLine()) != null){
             System.out.println(s);
         }
+        bufferedReader.close();
 
+        try(BufferedWriter bufferedWriter = new BufferedWriter( new FileWriter("text.txt", true))) {
+            bufferedWriter.write("trs");
+            bufferedWriter.newLine();
+        }
+
+        // Считывает по битам каждый символ
         System.out.println("---------------------4---------------------");
+        InputStream inputStream = new FileInputStream("text.txt");
+        i=0;
+        while((i = inputStream.read()) != -1){
+            System.out.println(i);
+        }
+
+        try(OutputStream outputStream = new FileOutputStream("text.txt", true)) {
+            outputStream.write(107);
+            outputStream.write(10);
+        }
+
+        // Еще есть BufferedInputStream/BufferedOutputStream/DataInputStream/ZipInputStream
     }
 }
